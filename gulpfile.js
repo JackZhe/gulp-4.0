@@ -36,8 +36,6 @@ gulp.task("script", function() {
   return gulp
     .src("app/js/*.js")
     .pipe(gulpPlumber())
-    .pipe(babel())
-    .pipe(uglify())
     .pipe(gulp.dest("app/js/"))
     .pipe(reload({ stream: true }));
 });
@@ -55,7 +53,7 @@ gulp.task("usemin", function() {
             });
           }
         ],
-        js: [uglify, rev],
+        js: [babel, uglify, rev],
         css: [rev]
       })
     )
@@ -90,5 +88,5 @@ gulp.task("clean:dist", function() {
 
 gulp.task(
   "build",
-  gulp.series("clean:dist", gulp.parallel("sass", "script", "usemin", "copyjs"))
+  gulp.series("clean:dist", gulp.parallel("sass", "usemin", "copyjs"))
 );

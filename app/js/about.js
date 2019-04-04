@@ -1,1 +1,9 @@
-"use strict";function about(){console.log("about123")}function aa(){console.log("aa")}about(),console.log(123);
+function about() {
+  console.log("about");
+}
+function aa() {
+  console.log("aa123");
+}
+aa();
+about();
+console.log(456123);
