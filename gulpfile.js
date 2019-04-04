@@ -11,6 +11,7 @@ var babel = require("gulp-babel");
 var postcss = require("gulp-postcss");
 var autoprefixer = require("autoprefixer");
 var cssnano = require("cssnano");
+var imagemin = require("gulp-imagemin");
 var del = require("del");
 var gulpPlumber = require("gulp-plumber");
 
@@ -68,6 +69,25 @@ gulp.task("copyjs", function() {
     .pipe(gulp.dest("dist/js"));
 });
 
+gulp.task("imagemin", function() {
+  return gulp
+    .src(["app/images/**/*.+(png|jpg|gif|svg|jpeg)"])
+    .pipe(imagemin())
+    .pipe(gulp.dest("dist/images"));
+});
+
+gulp.task("libs", function() {
+  return gulp.src(["app/libs/**/*"]).pipe(gulp.dest("dist/libs"));
+});
+
+gulp.task("icon", function() {
+  return gulp.src(["app/fav.png"]).pipe(gulp.dest("dist"));
+});
+
+gulp.task("fonts", function() {
+  return gulp.src(["app/fonts/**/*"]).pipe(gulp.dest("dist/fonts"));
+});
+
 // 服务器/监听 scss/html/js
 gulp.task(
   "serve",
@@ -88,5 +108,16 @@ gulp.task("clean:dist", function() {
 
 gulp.task(
   "build",
-  gulp.series("clean:dist", gulp.parallel("sass", "usemin", "copyjs"))
+  gulp.series(
+    "clean:dist",
+    gulp.parallel(
+      "sass",
+      "usemin",
+      "copyjs",
+      "imagemin",
+      "libs",
+      "icon",
+      "fonts"
+    )
+  )
 );
