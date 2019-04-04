@@ -1,0 +1,1 @@
+"use strict";function common(){console.log("common")}common();

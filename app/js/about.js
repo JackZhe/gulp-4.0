@@ -1,0 +1,1 @@
+"use strict";function about(){console.log("about123")}function aa(){console.log("aa")}about(),console.log(123);

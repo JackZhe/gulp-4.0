@@ -1,0 +1,15 @@
+@import "./common/common.scss";
+
+div {
+  color: aquamarine;
+  display: flex;
+  border: 1px solid cadetblue;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+span {
+  display: block;
+  text-align: right;
+  font-size: 30px;
+}
